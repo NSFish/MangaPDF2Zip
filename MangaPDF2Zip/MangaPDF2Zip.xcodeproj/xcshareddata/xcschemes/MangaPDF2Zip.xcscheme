@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7035EAB8267E0A4200FC59AD"
-               BuildableName = "MangaPDF2Zip"
+               BuildableName = "manga-pdf-to-zip"
                BlueprintName = "MangaPDF2Zip"
                ReferencedContainer = "container:MangaPDF2Zip.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7035EAB8267E0A4200FC59AD"
-            BuildableName = "MangaPDF2Zip"
+            BuildableName = "manga-pdf-to-zip"
             BlueprintName = "MangaPDF2Zip"
             ReferencedContainer = "container:MangaPDF2Zip.xcodeproj">
          </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7035EAB8267E0A4200FC59AD"
-            BuildableName = "MangaPDF2Zip"
+            BuildableName = "manga-pdf-to-zip"
             BlueprintName = "MangaPDF2Zip"
             ReferencedContainer = "container:MangaPDF2Zip.xcodeproj">
          </BuildableReference>

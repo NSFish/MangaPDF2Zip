@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7035EAB9267E0A4200FC59AD /* MangaPDF2Zip */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MangaPDF2Zip; sourceTree = BUILT_PRODUCTS_DIR; };
+		7035EAB9267E0A4200FC59AD /* manga-pdf-to-zip */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "manga-pdf-to-zip"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7035EABC267E0A4200FC59AD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,7 +49,7 @@
 		7035EABA267E0A4200FC59AD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7035EAB9267E0A4200FC59AD /* MangaPDF2Zip */,
+				7035EAB9267E0A4200FC59AD /* manga-pdf-to-zip */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,7 +79,7 @@
 			);
 			name = MangaPDF2Zip;
 			productName = MangaPDF2Zip;
-			productReference = 7035EAB9267E0A4200FC59AD /* MangaPDF2Zip */;
+			productReference = 7035EAB9267E0A4200FC59AD /* manga-pdf-to-zip */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -245,7 +245,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "manga-pdf-to-zip";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -254,7 +254,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "manga-pdf-to-zip";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

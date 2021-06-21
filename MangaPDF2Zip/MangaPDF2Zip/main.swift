@@ -57,7 +57,11 @@ func pdf2Zip(with fileURL: URL) {
     
     decompress(fileURL: fileURL)
     renameImagesBySerialNumber(in: fileURL.deletingPathExtension())
-    zip(directory: fileNameDirectory)
+    var zipURL = zip(directory: fileNameDirectory)
+
+    // 复制 PDF 的标签到 zip 上
+    let tags = try! fileURL.resourceValues(forKeys: [URLResourceKey.tagNamesKey])
+    try! zipURL.setResourceValues(tags)
     
     try! fileManager.removeItem(at: fileNameDirectory)
     try! fileManager.removeItem(at: fileURL)
@@ -110,10 +114,10 @@ func renameImagesBySerialNumber(in directoryURL: URL) {
 }
 
 // 直接用 QuickLook 看到的文件顺序是乱的，但是用漫画软件打开是正确的
-func zip(directory: URL) {
-    let archiveUrl = directory.appendingPathExtension("zip")
-    if fileManager.fileExists(atPath: archiveUrl.path) {
-        try! fileManager.removeItem(at: archiveUrl)
+func zip(directory: URL) -> URL {
+    let archiveURL = directory.appendingPathExtension("zip")
+    if fileManager.fileExists(atPath: archiveURL.path) {
+        try! fileManager.removeItem(at: archiveURL)
     }
     // if we encounter an error, store it here
     var error: NSError?
@@ -126,12 +130,20 @@ func zip(directory: URL) {
     coordinator.coordinate(readingItemAt: directory, options: [.forUploading], error: &error) { zipUrl in
         // zipUrl points to the zip file created by the coordinator
         // zipUrl is valid only until the end of this block, so we move the file to a temporary folder
-        try! fileManager.moveItem(at: zipUrl, to: archiveUrl)
+        try! fileManager.moveItem(at: zipUrl, to: archiveURL)
     }
+    
+    return archiveURL
 }
 
 //MARK:- Helper
 func compareFileName(left: String, right: String) -> Bool {
+    // 如果解压出来的文件中无法读取到数字，则保持原顺序不变
+    if !left.contains("Page")
+        || !right.contains("Page") {
+        return true
+    }
+    
     let leftFirst = left.components(separatedBy: ",").first!
     let leftPage = leftFirst.components(separatedBy: " ").last!
     
