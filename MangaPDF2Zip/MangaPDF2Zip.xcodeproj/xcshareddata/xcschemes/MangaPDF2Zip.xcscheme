@@ -55,6 +55,10 @@
             argument = "/Users/nsfish/Desktop/Folder"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Volumes/ZYAN/&#x6f2b;&#x753b;/&#x672c;&#x5b50;/&#x756a;&#x5267;/&#x9b54;&#x6cd5;&#x7981;&#x4e66;&#x76ee;&#x5f55;"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
    <ProfileAction

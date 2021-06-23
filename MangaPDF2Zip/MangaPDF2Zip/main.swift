@@ -11,7 +11,7 @@ import Foundation
  1. 获取 url
  2. 提取输入的参数中的所有文件
  3. 逐个处理
- 3.1 解压缩(unar)
+    3.1 解压缩(unar)
     3.2 cd 进入，按顺序重命名文件
     3.3 后退，压缩
     3.4 删除文件夹和 PDF
@@ -58,7 +58,7 @@ func pdf2Zip(with fileURL: URL) {
     decompress(fileURL: fileURL)
     renameImagesBySerialNumber(in: fileURL.deletingPathExtension())
     var zipURL = zip(directory: fileNameDirectory)
-
+    
     // 复制 PDF 的标签到 zip 上
     let tags = try! fileURL.resourceValues(forKeys: [URLResourceKey.tagNamesKey])
     try! zipURL.setResourceValues(tags)
@@ -73,12 +73,16 @@ func decompress(fileURL: URL) {
     let task = Process()
     task.currentDirectoryURL = directoryURL
     task.executableURL = URL.init(fileURLWithPath: "/Users/nsfish/Documents/Github/PersonalScripts/unar")
-    task.arguments = [fileURL.path]
+    // unar
+    // -force-directory (-d)                   Always create a containing directory for the contents of the unpacked archive. By default, a directory is created if there is more than one top-level file or folder.
+    // 兼容只有一张图的 PDF，即使解压出来的内容只有一个文件，也创建文件夹
+    task.arguments = [fileURL.path, "-d"]
     
-    let pipeStandard = Pipe()
-    task.standardOutput = pipeStandard
+    let outputPipe = Pipe()
+    task.standardOutput = outputPipe
     
     task.launch()
+    
     task.waitUntilExit()
 }
 
@@ -121,7 +125,7 @@ func zip(directory: URL) -> URL {
     }
     // if we encounter an error, store it here
     var error: NSError?
-
+    
     let coordinator = NSFileCoordinator()
     // zip up the documents directory
     // this method is synchronous and the block will be executed before it returns
